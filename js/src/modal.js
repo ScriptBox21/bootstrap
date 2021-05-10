@@ -145,7 +145,7 @@ class Modal extends BaseComponent {
   }
 
   hide(event) {
-    if (event) {
+    if (event && ['A', 'AREA'].includes(event.target.tagName)) {
       event.preventDefault()
     }
 
@@ -271,8 +271,8 @@ class Modal extends BaseComponent {
     EventHandler.off(document, EVENT_FOCUSIN) // guard against infinite focus loop
     EventHandler.on(document, EVENT_FOCUSIN, event => {
       if (document !== event.target &&
-          this._element !== event.target &&
-          !this._element.contains(event.target)) {
+        this._element !== event.target &&
+        !this._element.contains(event.target)) {
         this._element.focus()
       }
     })
